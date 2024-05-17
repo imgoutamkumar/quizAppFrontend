@@ -1,0 +1,140 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="sideNavBar()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Quizverse</span>
+  <span class="example-spacer"></span>
+  <div class="headers_buttons">
+    @if(isAdmin ==="ADMIN"){
+    <button
+      style="
+        height: 40px;
+        background-image: linear-gradient(to right, rgb(221, 77, 5), #f8b82e);
+      "
+      mat-fab
+      extended
+      (click)="createQuizForm()"
+    >
+      Create Quiz
+    </button>
+    } @if(isAdmin ==="ADMIN"){
+    <button
+      style="
+        height: 40px;
+        background-image: linear-gradient(to right, rgb(221, 77, 5), #f8b82e);
+      "
+      mat-fab
+      extended
+      (click)="getUnPublishedQuiz()"
+    >
+      UnPublished Quizes
+    </button>
+    }
+    <ng-container>
+      <div style="display: flex; align-items: center">
+        <img
+          [matMenuTriggerFor]="menu"
+          style="
+            height: 36px;
+            width: 36px;
+            border-radius: 18px;
+            object-fit: cover;
+          "
+          src="https://i.pinimg.com/564x/bc/7a/0c/bc7a0c399990de122f1b6e09d00e6c4c.jpg"
+        />
+
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="logOut()">
+            <span>Log Out</span>
+          </button>
+          <button mat-menu-item (click)="myProfile()">
+            <span>Your Profile</span>
+          </button>
+        </mat-menu>
+      </div>
+    </ng-container>
+  </div>
+</mat-toolbar>
+@if(isAdmin ==="ADMIN"){
+<ng-container>
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      padding: 20px 20px 0px 20px;
+      column-gap: 20px;
+      justify-content: space-between;
+    "
+  >
+    <h1 style="color: rgb(87, 85, 85)">All Published Quiz</h1>
+    <div></div>
+
+    <form [formGroup]="filterForm" (ngSubmit)="FilterPublishedQuiz()">
+      <span style="display: flex; align-items: center; column-gap: 20px">
+        <h3 style="font-weight: 400">Filter BY</h3>
+        <mat-form-field appearance="outline" style="width: 130px">
+          <mat-label>publish</mat-label>
+          <mat-select formControlName="is_published">
+            @for (publish of isQuizPublished; track publish) {
+            <mat-option [value]="publish">{{ publish }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 130px">
+          <mat-label>demo test selector</mat-label>
+          <mat-select placeholder="not working">
+            @for (publish of isQuizPublished; track publish) {
+            <mat-option [value]="publish">{{ publish }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 130px">
+          <mat-label>demo test selector</mat-label>
+          <mat-select placeholder="not working">
+            @for (publish of isQuizPublished; track publish) {
+            <mat-option [value]="publish">{{ publish }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          style="
+            border-radius: 20px;
+            color: white;
+            background-image: linear-gradient(
+              to right,
+              rgb(248, 99, 25),
+              #f8b82e
+            );
+          "
+          type="submit"
+        >
+          filter
+        </button>
+      </span>
+    </form>
+  </div>
+</ng-container>
+}
+
+<div class="responsive-grid">
+  @for (quiz of quizes; track $index) {
+  <div class="quiz_card-main">
+    <mat-card class="quiz_card" (click)="startTest(quiz._id)">
+      <mat-card-header style="padding: 0px">
+        <mat-card-title>{{ quiz.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="quiz_card-image_main">
+          <img class="quiz_card-image" [src]="quiz.imageUrl" alt="image" />
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  }
+</div>

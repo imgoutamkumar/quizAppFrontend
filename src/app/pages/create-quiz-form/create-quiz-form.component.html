@@ -1,0 +1,113 @@
+<mat-card style="margin: 20px; padding: 10px 30px 30px 20px">
+  <form [formGroup]="quizForm" (ngSubmit)="createQuiz()">
+    <mat-form-field appearance="outline">
+      <mat-label>Quiz Name</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        placeholder="write quiz name here..."
+        required
+      />
+    </mat-form-field>
+
+    <ng-container formArrayName="questions_list">
+      @for (question of questions_list.controls; track question; let i = $index)
+      {
+      <mat-card
+        style="
+          margin-bottom: 25px;
+          padding: 10px 20px 20px 20px;
+          background-color: rgb(245, 244, 245);
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h3 style="margin: 0px; font-weight: bold; font-size: 20px">
+            Question {{ i + 1 }}
+          </h3>
+          <button mat-icon-button (click)="removeQuestion(i)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+
+        <div [formGroupName]="i">
+          <div>
+            <mat-form-field appearance="outline" class="question-form_field">
+              <mat-label>Question {{ i + 1 }}</mat-label>
+              <input
+                matInput
+                formControlName="question"
+                placeholder="write question here..."
+                required
+              />
+            </mat-form-field>
+
+            <div formArrayName="options">
+              @for (option of getoptions(i).controls; track option;let j
+              =$index) {
+              <div style="display: flex; padding-bottom: 5px">
+                <mat-form-field
+                  appearance="outline"
+                  class="option-form_field"
+                  style="display: flex"
+                >
+                  <mat-label>Option {{ j }}</mat-label>
+                  <input
+                    matInput
+                    formControlName="{{ j }}"
+                    type="text"
+                    placeholder="write option {{ j + 1 }} here..."
+                    required
+                  />
+                </mat-form-field>
+                <button mat-icon-button (click)="removeOptions(i, j)">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+              }
+              <button
+                mat-fab
+                extended
+                class="add_option-button"
+                type="button"
+                (click)="addOptions(i)"
+              >
+                Add more option
+              </button>
+            </div>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Answer</mat-label>
+              <input
+                matInput
+                formControlName="answer"
+                placeholder="only contain option index value"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+      }
+      <button
+        mat-fab
+        extended
+        class="add_question-button"
+        type="button"
+        (click)="addQuestion()"
+      >
+        Add more question
+      </button>
+    </ng-container>
+    <div style="display: flex; justify-content: flex-end">
+      <button mat-fab extended type="submit" class="Submit-button">
+        Create
+      </button>
+    </div>
+  </form>
+</mat-card>

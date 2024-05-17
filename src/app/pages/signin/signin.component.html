@@ -1,0 +1,48 @@
+<div class="signin_page">
+  <mat-card class="signIn-card">
+    <mat-card-header>
+      <mat-card-title style="margin: 10px">Log In</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="signIn-card_content">
+      <form [formGroup]="logInForm" (submit)="signin()">
+        <div class="row">
+          <div class="form_fields">
+            <mat-form-field appearance="outline">
+              <mat-label>email</mat-label>
+              <input
+                matInput
+                placeholder="enter email"
+                formControlName="email"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>password</mat-label>
+              <input
+                matInput
+                placeholder="enter password"
+                formControlName="password"
+              />
+            </mat-form-field>
+          </div>
+
+          <button type="submit" mat-fab extended class="SignIn_button">
+            Signin
+          </button>
+          <div class="signUp_link">
+            <h3>don't have an account?</h3>
+            <a
+              style="text-decoration: none"
+              [routerLink]="['/signup']"
+              routerLinkActive="router-link-active"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

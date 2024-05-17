@@ -1,0 +1,49 @@
+mat-toolbar {
+  background-image: linear-gradient(to right, rgb(252, 146, 40), #d4d3d7);
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}
+.headers_buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.responsive-grid {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  row-gap: 20px;
+  .quiz_card-main {
+    margin: 20px 20px 15px;
+    .quiz_card {
+      width: 200px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-image: linear-gradient(to right, rgb(248, 99, 25), #fbd88d);
+      mat-card-content {
+        height: 65%;
+      }
+      .quiz_card-image_main {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding-top: 10px;
+        .quiz_card-image {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+      }
+    }
+    .quiz_card {
+      cursor: pointer;
+    }
+  }
+}

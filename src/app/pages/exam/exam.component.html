@@ -1,0 +1,76 @@
+@if (isloading) {
+<mat-spinner></mat-spinner>
+}
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    gap: 20px;
+  "
+>
+  <mat-card
+    class="examTitle_card"
+    style="
+      background-color: rgb(226, 221, 225);
+      width: 70%;
+      height: 70px;
+      position: relative;
+    "
+  >
+    <mat-card-header style="padding: 0px">
+      <mat-card-title style="font-weight: 350; font-size: 30px">{{
+        this.questions.name
+      }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-footer style="width: 100%; position: absolute; bottom: 0">
+      <mat-progress-bar
+        color="warn"
+        mode="determinate"
+        [value]="
+          (timer / (this.questions.questions_list.length * 2 * 60)) * 100
+        "
+      ></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+  <mat-card
+    style="
+      background-color: rgb(226, 221, 225);
+      width: 10%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background-color: rgb(255, 255, 255);
+      color: rgb(31, 50, 220);
+    "
+    >{{ getFormattedTime() }}</mat-card
+  >
+</div>
+@for (question of questions.questions_list; track $index ) {
+<mat-card class="question_card">
+  <mat-card-header>
+    <mat-card-title>{{ question.question }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      [(ngModel)]="submitted_answers[$index]"
+    >
+      @for (option of question.options; track $index) {
+      <mat-radio-button class="example-radio-button" [value]="$index">{{
+        option
+      }}</mat-radio-button>
+      }
+    </mat-radio-group>
+  </mat-card-content>
+</mat-card>
+}
+<div class="submit_button_main">
+  <button mat-fab extended class="submit_button" (click)="SubmitExamByQuizId()">
+    Submit Exam
+  </button>
+</div>

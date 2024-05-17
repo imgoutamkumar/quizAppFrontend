@@ -1,0 +1,50 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Quizverse</span>
+  <span class="example-spacer"></span>
+  <div class="headers_buttons">
+    @if(isAdmin){
+    <button
+      style="height: 40px"
+      mat-fab
+      extended
+      color="primary"
+      (click)="createQuizForm()"
+    >
+      Create Quiz
+    </button>
+    }<!--  @if(isAdmin){
+    <button
+      style="height: 40px"
+      mat-fab
+      extended
+      color="primary"
+      (click)="getUnPublishedQuiz()"
+    >
+      UnPublished Quizes
+    </button>
+    } -->
+  </div>
+</mat-toolbar>
+<div class="responsive-grid">
+  @for (quiz of quizes; track $index) {
+  <div class="quiz_card-main">
+    <mat-card class="quiz_card" (click)="updateQuiz(quiz._id)">
+      <mat-card-header style="padding: 0px">
+        <mat-card-title>{{ quiz.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="quiz_card-image_main">
+          <img class="quiz_card-image" [src]="quiz.imageUrl" alt="image" />
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  }
+</div>

@@ -1,0 +1,59 @@
+<mat-card class="examTitle_card" style="background-color: rgb(206, 199, 203)">
+  <mat-card-header style="padding: 0px">
+    <mat-card-title style="font-weight: 350; font-size: 30px">{{
+      questions.name
+    }}</mat-card-title>
+  </mat-card-header>
+</mat-card>
+<div class="question_card_main" style="padding-bottom: 20px">
+  @for (question of questions.questions_list; track $index) {
+  <mat-card class="question_card">
+    <mat-card-header>
+      <div class="title_main">
+        <mat-card-title>{{ question.question }}</mat-card-title>
+        <span>
+          @if (isQuizPublished===false) {
+          <button
+            mat-raised-button
+            style="
+              border-radius: 20px;
+              color: white;
+              background-image: linear-gradient(
+                to right,
+                rgb(221, 77, 5),
+                #f8b82e
+              );
+            "
+            (click)="openUpdateQuestionForm($index)"
+          >
+            Update
+          </button>
+          } @if (isQuizPublished===false) {
+          <button
+            class="delete_button"
+            mat-icon-button
+            matTooltip="Primary"
+            color="primary"
+            (click)="deleteQuestion($index)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          }
+        </span>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+      >
+        @for (option of question.options; track $index) {
+        <mat-radio-button class="example-radio-button" [value]="$index">{{
+          option
+        }}</mat-radio-button>
+        }
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card>
+  }
+</div>

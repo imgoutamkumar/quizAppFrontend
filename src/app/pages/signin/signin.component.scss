@@ -1,0 +1,49 @@
+body {
+  height: 100%;
+}
+.signin_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .signIn-card {
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    max-height: 700px;
+    .signIn-card_content {
+      padding-bottom: 10px;
+      .row {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 5px 0px;
+        .form_fields {
+          width: 350px;
+          max-height: 400px;
+          mat-form-field {
+            width: 100%;
+            margin-bottom: 15px;
+            input {
+              width: 100%;
+            }
+          }
+        }
+        .SignIn_button {
+          width: 120px;
+          height: 40px;
+          background-color: #1c74e9;
+          margin-bottom: 5px;
+        }
+        .signUp_link {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          h3 {
+            margin: 0px;
+          }
+        }
+      }
+    }
+  }
+}

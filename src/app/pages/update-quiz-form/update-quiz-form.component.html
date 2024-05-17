@@ -1,0 +1,74 @@
+<mat-card style="margin: 20px; padding: 10px 30px 30px 20px">
+  <mat-card-header>
+    <mat-card-title style="margin: 10px">Update Question</mat-card-title>
+  </mat-card-header>
+  <div class="update_Question-card_content">
+    <mat-card-content>
+      <form [formGroup]="questionForm" (submit)="updateQuestion()">
+        <mat-form-field appearance="outline" style="height: 100px">
+          <mat-label>question</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="write question here..."
+            formControlName="question"
+            [(ngModel)]="question.question"
+          />
+        </mat-form-field>
+
+        <ng-container formArrayName="options">
+          @for (option of options.controls; track $index) {
+          <div style="display: flex; padding-bottom: 5px">
+            <mat-form-field appearance="outline">
+              <mat-label> option {{ $index }}</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="write option {{ $index + 1 }} here..."
+                [formControlName]="$index"
+                [(ngModel)]="question.options[$index]"
+              />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              (click)="removeOptions($index)"
+              type="button"
+            >
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </div>
+
+          }
+          <button
+            mat-fab
+            extended
+            (click)="addOptions()"
+            style="
+              height: 40px;
+              background-color: rgb(142, 140, 140);
+              margin-bottom: 20px;
+            "
+            type="button"
+          >
+            Add option field
+          </button>
+        </ng-container>
+
+        <mat-form-field appearance="outline">
+          <mat-label>answer</mat-label>
+          <input
+            matInput
+            placeholder="answer only contain option's index value"
+            formControlName="answer"
+            [(ngModel)]="question.answer"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </div>
+  <div style="display: flex; justify-content: flex-end; align-items: center">
+    <button type="submit" mat-fab extended class="update_Question-button">
+      Update
+    </button>
+  </div>
+</mat-card>

@@ -1,0 +1,36 @@
+mat-spinner {
+  color: primary; /* Change color */
+  height: 10px; /* Adjust height */
+  width: 10px; /* Adjust width */
+}
+
+.examTitle_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question_card {
+  display: flex;
+  margin: 20px 60px 5px;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+.submit_button_main {
+  display: flex;
+  justify-content: end;
+  margin: 0px 40px 20px;
+  .submit_button {
+    background-color: #1c74e9;
+    font-weight: 400;
+    margin: 20px;
+  }
+}

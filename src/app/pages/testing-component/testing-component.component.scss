@@ -1,0 +1,36 @@
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+.option-form_field {
+  height: 50px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.question-form_field {
+  height: 100px;
+  margin-bottom: 8px;
+}
+.add_option-button {
+  height: 35px;
+  margin: 5px 0px 5px;
+  border-radius: 17.5px;
+}
+.add_option-button:hover {
+  background-color: rgb(238, 25, 143);
+}
+.add_question-button {
+  height: 40px;
+  background-color: rgb(142, 140, 140);
+}
+.add_question-button:hover {
+  background-color: rgb(122, 121, 121);
+}
+.Submit-button {
+  height: 40px;
+  background-color: rgb(48, 186, 23);
+  margin: 10px 0px 10px;
+}
